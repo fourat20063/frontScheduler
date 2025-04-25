@@ -1,0 +1,41 @@
+<!-- src/app/components/sidebar/sidebar.component.html -->
+<div class="sidebar">
+  <div class="logo">
+    <img src="assets/adad-logo.png" alt="adad logo" />
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li [class.active]="isActiveRoute('/dashboard')">
+        <a routerLink="/dashboard">
+          <i class="icon dashboard-icon"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li [class.active]="isActiveRoute('/jobs')">
+        <a routerLink="/jobs">
+          <i class="icon jobs-icon"></i>
+          <span>All Jobs</span>
+        </a>
+      </li>
+      <li [class.active]="isActiveRoute('/jobs/new')">
+        <a routerLink="/jobs/new">
+          <i class="icon add-icon"></i>
+          <span>Add New Job</span>
+        </a>
+      </li>
+      <li [class.active]="isActiveRoute('/history')">
+        <a routerLink="/history">
+          <i class="icon history-icon"></i>
+          <span>Execution History</span>
+        </a>
+      </li>
+      <li [class.active]="isActiveRoute('/deleted')">
+        <a routerLink="/deleted">
+          <i class="icon deleted-icon"></i>
+          <span>Deleted Jobs</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

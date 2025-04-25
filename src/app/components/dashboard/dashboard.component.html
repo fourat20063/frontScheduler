@@ -1,0 +1,50 @@
+<!-- src/app/components/dashboard/dashboard.component.html -->
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+
+  <div class="stats-cards">
+    <div class="stats-card">
+      <div class="stats-card-title">Total Jobs</div>
+      <div class="stats-card-value">{{ totalJobs }}</div>
+    </div>
+
+    <!-- More stats cards could go here -->
+  </div>
+
+  <div class="recent-jobs">
+    <h2>Recent Jobs</h2>
+
+    <div class="jobs-table">
+      <table>
+        <thead>
+          <tr>
+            <th>JOB NAME</th>
+            <th>SCHEDULE</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of recentJobs">
+            <td>{{ job.jobName }}</td>
+            <td>
+              <div class="schedule-info">
+                <div class="cron-expression">{{ job.cronExpression }}</div>
+                <div class="human-readable">
+                  {{ job.humanReadableSchedule }}
+                </div>
+              </div>
+            </td>
+            <td class="url-cell">{{ job.url }}</td>
+          </tr>
+          <tr *ngIf="recentJobs.length === 0">
+            <td colspan="3" class="no-jobs">No jobs found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="view-all">
+      <a routerLink="/jobs">View all jobs</a>
+    </div>
+  </div>
+</div>

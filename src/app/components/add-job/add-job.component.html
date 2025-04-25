@@ -1,0 +1,80 @@
+<!-- src/app/components/add-job/add-job.component.html -->
+<div class="add-job-container">
+  <h1>Add New Job</h1>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-form">
+    <div class="form-group">
+      <label for="jobName">JOB NAME</label>
+      <input
+        type="text"
+        id="jobName"
+        formControlName="jobName"
+        placeholder="Enter job name"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          jobForm.get('jobName')?.invalid && jobForm.get('jobName')?.touched
+        "
+      >
+        Job name is required and must contain only letters, numbers, and
+        underscores
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="url">URL</label>
+      <input
+        type="text"
+        id="url"
+        formControlName="url"
+        placeholder="http://localhost:8083/api/executeJob"
+      />
+      <div
+        class="error-message"
+        *ngIf="jobForm.get('url')?.invalid && jobForm.get('url')?.touched"
+      >
+        Please enter a valid URL starting with http:// or https://
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cronExpression">Cron Expression</label>
+      <input
+        type="text"
+        id="cronExpression"
+        formControlName="cronExpression"
+        placeholder="0 * * * *"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          jobForm.get('cronExpression')?.invalid &&
+          jobForm.get('cronExpression')?.touched
+        "
+      >
+        Please enter a valid cron expression (e.g., 0 * * * *)
+      </div>
+      <div class="hint">
+        Format: minute hour day-of-month month day-of-week<br />
+        Examples:<br />
+        - 0 * * * * = Every hour<br />
+        - 0 8 * * 1-5 = Weekdays at 8:00 AM<br />
+        - 0 0 * * 0 = Weekly on Sunday at midnight
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="confirm-btn"
+        [disabled]="jobForm.invalid || submitting"
+      >
+        Confirm
+      </button>
+    </div>
+  </form>
+</div>

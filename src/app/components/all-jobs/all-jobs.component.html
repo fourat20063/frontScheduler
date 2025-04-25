@@ -1,0 +1,108 @@
+<!-- src/app/components/all-jobs/all-jobs.component.html -->
+<div class="jobs-container">
+  <div class="jobs-header">
+    <h1>All Scheduled Jobs</h1>
+    <div class="header-actions">
+      <button class="add-job-btn" routerLink="/jobs/new">
+        <i class="add-icon"></i>
+        Add New Job
+      </button>
+      <div class="search-container">
+        <input type="text" placeholder="Search" class="search-input" />
+      </div>
+    </div>
+  </div>
+
+  <div class="jobs-table">
+    <table>
+      <thead>
+        <tr>
+          <th>JOB NAME</th>
+          <th>SCHEDULE</th>
+          <th>URL</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.jobName }}</td>
+          <td>
+            <div class="schedule-info">
+              <div class="cron-expression">{{ job.cronExpression }}</div>
+              <div class="human-readable">{{ job.humanReadableSchedule }}</div>
+            </div>
+          </td>
+          <td class="url-cell">{{ job.url }}</td>
+          <td class="actions-cell">
+            <button
+              class="action-btn execute-btn"
+              (click)="executeJob(job.jobName)"
+              title="Execute Now"
+            >
+              <i class="play-icon"></i>
+            </button>
+            <button
+              class="action-btn edit-btn"
+              (click)="editJob(job)"
+              title="Edit Job"
+            >
+              <i class="edit-icon"></i>
+            </button>
+            <button
+              class="action-btn delete-btn"
+              (click)="deleteJob(job.jobName)"
+              title="Delete Job"
+            >
+              <i class="delete-icon"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="totalJobs > itemsPerPage">
+    <span class="pagination-info"
+      >Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+      {{ Math.min(currentPage * itemsPerPage, totalJobs) }} of
+      {{ totalJobs }} jobs</span
+    >
+    <div class="pagination-controls">
+      <button
+        class="pagination-btn"
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <button
+        class="pagination-btn"
+        [class.active]="currentPage === 1"
+        (click)="changePage(1)"
+      >
+        1
+      </button>
+      <button
+        class="pagination-btn"
+        [class.active]="currentPage === 2"
+        (click)="changePage(2)"
+      >
+        2
+      </button>
+      <button
+        class="pagination-btn"
+        [class.active]="currentPage === 3"
+        (click)="changePage(3)"
+      >
+        3
+      </button>
+      <button
+        class="pagination-btn"
+        [disabled]="currentPage * itemsPerPage >= totalJobs"
+        (click)="changePage(currentPage + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

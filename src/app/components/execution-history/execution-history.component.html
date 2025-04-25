@@ -1,0 +1,43 @@
+<!-- src/app/components/execution-history/execution-history.component.html -->
+<div class="history-container">
+  <h1>Execution History</h1>
+
+  <div class="history-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>JOB NAME</th>
+          <th>STATUS</th>
+          <th>EXECUTED AT</th>
+          <th>DURATION</th>
+          <th>MESSAGE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let record of executionRecords"
+          [class.failed]="record.status === 'FAILED'"
+        >
+          <td>{{ record.id }}</td>
+          <td>{{ record.jobName }}</td>
+          <td class="status">
+            <span
+              class="status-badge"
+              [class.success]="record.status === 'SUCCESS'"
+              [class.failed]="record.status === 'FAILED'"
+            >
+              {{ record.status }}
+            </span>
+          </td>
+          <td>{{ record.executedAt | date : "MMM d, y, h:mm a" }}</td>
+          <td>{{ formatDuration(record.duration) }}</td>
+          <td>{{ record.message || "-" }}</td>
+        </tr>
+        <tr *ngIf="executionRecords.length === 0">
+          <td colspan="6" class="no-records">No execution records found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

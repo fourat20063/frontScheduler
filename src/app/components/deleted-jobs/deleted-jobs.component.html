@@ -1,0 +1,35 @@
+<!-- src/app/components/deleted-jobs/deleted-jobs.component.html -->
+<div class="deleted-jobs-container">
+  <h1>Deleted Jobs</h1>
+
+  <div class="deleted-jobs-table">
+    <table>
+      <thead>
+        <tr>
+          <th>JOB NAME</th>
+          <th>CRON EXPRESSION</th>
+          <th>URL</th>
+          <th>DELETED AT</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of deletedJobs">
+          <td>{{ job.jobName }}</td>
+          <td>{{ job.cronExpression }}</td>
+          <td class="url-cell">{{ job.url }}</td>
+          <td>{{ job.deletedAt | date : "MMM d, y, h:mm a" }}</td>
+          <td>
+            <button class="restore-btn" (click)="restoreJob(job.jobName)">
+              <i class="restore-icon"></i>
+              Restore
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="deletedJobs.length === 0">
+          <td colspan="5" class="no-jobs">No deleted jobs found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

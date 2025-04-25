@@ -1,0 +1,82 @@
+/* src/app/components/deleted-jobs/deleted-jobs.component.scss */
+.deleted-jobs-container {
+  padding: 20px;
+  width: 100%;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+  }
+}
+
+.deleted-jobs-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      font-weight: 600;
+      color: #555;
+      background-color: #f9f9f9;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .no-jobs {
+      text-align: center;
+      color: #777;
+      padding: 32px;
+    }
+  }
+}
+
+.url-cell {
+  font-family: monospace;
+  font-size: 14px;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.restore-btn {
+  background-color: transparent;
+  border: 1px solid #2196f3;
+  color: #2196f3;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(33, 150, 243, 0.05);
+  }
+
+  .restore-icon {
+    margin-right: 6px;
+    background-image: url("/assets/icons/restore.svg");
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
